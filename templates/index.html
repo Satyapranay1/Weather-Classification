@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Classification</title>
+    <style>
+
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6DD5FA, #2980B9); /* Dynamic gradient background */
+    margin: 0;
+    color: #333;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.15); /* Transparent white for glass effect */
+    border-radius: 20px;
+    padding: 30px;
+    width: 90%;
+    max-width: 500px;
+    backdrop-filter: blur(10px); /* Glassmorphism blur */
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    animation: fadeIn 1s ease-in-out; /* Smooth fade-in animation */
+}
+
+.container h1 {
+    font-size: 2.5rem;
+    color: #fff;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.container p {
+    color: #f3f3f3;
+    margin: 10px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    border: 2px dashed #fff;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background: rgba(255, 255, 255, 0.2);
+    border-color: #FFD700; /* Golden glow on hover */
+}
+
+button {
+    background: linear-gradient(135deg, #1D976C, #93F9B9); /* Vibrant button gradient */
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 50px; /* Rounded button */
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background: linear-gradient(135deg, #93F9B9, #1D976C); /* Reverse gradient on hover */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow */
+}
+
+.instructions {
+    text-align: left;
+    margin-top: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+.instructions h3 {
+    font-size: 1.2rem;
+    color: #FFD700;
+    margin-bottom: 10px;
+}
+
+.instructions p {
+    margin: 5px 0;
+    font-size: 0.9rem;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    .container h1 {
+        font-size: 2rem;
+    }
+    button {
+        padding: 12px 20px;
+        font-size: 0.9rem;
+    }
+}
+
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Classification</h1>
+        <p>Upload an image of the sky or surroundings to classify the weather condition.</p>
+        <form action="/predict" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file" accept="image/*" required>
+            <br>
+            <button type="submit">Classify Weather</button>
+        </form>
+        <div class="instructions">
+            <h3>Instructions:</h3>
+            <p>1. Choose an image file in formats like .jpg, .png, or .jpeg.</p>
+            <p>2. Ensure the image clearly captures the weather condition.</p>
+            <p>3. Click "Classify Weather" to get the result.</p>
+        </div>
+        <h3>{{ result }}</h3>
+    </div>
+</body>
+</html>
